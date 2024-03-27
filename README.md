@@ -1,9 +1,14 @@
 # S24_CS3354_002_Group8
 Spring 24 CS 3354 Section 2 Group 8 Project
-
+------------------------------------------------------
+How to build
+Windows: run "gradlew.bat build" 
+Linux: run "gradlew build"
+-----------------------------------------------------
+How to run
 Run "java -jar API-0.0.1-SNAPSHOT.jar" 
 The JAR file is found in API\build\libs\
-
+-------------------------------------------------------
 API Enpoints:
 
 GET /users
