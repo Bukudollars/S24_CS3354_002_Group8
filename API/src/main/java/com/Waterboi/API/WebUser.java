@@ -1,21 +1,25 @@
 package com.Waterboi.API;
 import java.util.Objects;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 @Entity
 public class WebUser {
     private @Id @GeneratedValue Long id;
+    @Column(unique = true)
     private String username;
     private String password;
     WebUser() {}
     WebUser(String username, String password) {
-        this.username = username;
+        this.username = username.toLowerCase();
         this.password = password;
     }
     public Long getId() {
         return this.id;
     }
+    @Column(unique = true)
     public String getUsername() {
         return this.username;
     }
@@ -26,7 +30,7 @@ public class WebUser {
         this.id = id;
     }
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username.toLowerCase();
     }
     public void setPassword(String password) {
         this.password = password;

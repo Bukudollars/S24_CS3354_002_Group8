@@ -22,9 +22,18 @@ public class UserController {
         return repository.save(newWebUser);
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/users/id/{id}")
     WebUser findById(@PathVariable Long id) {
         return repository.findById(id).orElseThrow(() -> new userNotFoundException(id));
+    }
+    @GetMapping("/users/username/{username}")
+    WebUser findById(@PathVariable String username) {
+        List<WebUser> users = repository.findByUsernameIgnoreCase(username);
+        if(users.size() == 1) {
+            return users.get(0);
+        } else {
+            throw new userNotFoundException(username);
+        }
     }
 
 }
