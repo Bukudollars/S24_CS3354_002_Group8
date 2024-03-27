@@ -10,4 +10,4 @@ GET /users
 return list of users
 
 POST /users
-curl -X POST localhost:8080/users -H 'Content-type:application/json' -d '{"username": "<new username>", "password": "<new password>"}
+curl -X POST localhost:8080/users -H 'Content-type:application/json' -d '{"username": "new username", "password": "new password"}
