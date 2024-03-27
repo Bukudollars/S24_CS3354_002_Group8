@@ -1,6 +1,6 @@
 package com.Waterboi.API;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.Optional;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -21,5 +21,10 @@ public class UserController {
     WebUser newWebUser(@RequestBody WebUser newWebUser) {
         return repository.save(newWebUser);
     }
-    
+
+    @GetMapping("/users/{id}")
+    WebUser findById(@PathVariable Long id) {
+        return repository.findById(id).orElseThrow(() -> new userNotFoundException(id));
+    }
+
 }
