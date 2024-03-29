@@ -26,4 +26,5 @@ public class AppuserDetailsService implements UserDetailsService {
         }
         return builder.build();
     }
+
 }
