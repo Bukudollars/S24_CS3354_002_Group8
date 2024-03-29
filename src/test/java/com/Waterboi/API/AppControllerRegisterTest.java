@@ -44,7 +44,13 @@ public class AppControllerRegisterTest {
     //Test case 2
     @Test
     public void whenRegisterAppuser_confirmPasswordInvalid_throwException() throws Exception{
-        assertTrue(false);
+        mockMvc.perform(post("/register")
+                        .param("username", "newUser")
+                        .param("password", "password")
+                        .param("passwordConfirm", "password1")
+                        .with(csrf()))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/login"));
     }
     //Test case 3
     @Test
