@@ -12,6 +12,7 @@ public class Appuser {
     private Long id;
     private String username;
     private String password;
+    Appuser() {}
 
     public Appuser(String username, String password) {
         this.username = username.toLowerCase();
