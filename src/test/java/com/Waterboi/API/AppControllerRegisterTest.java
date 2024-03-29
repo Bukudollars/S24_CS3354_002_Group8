@@ -50,7 +50,7 @@ public class AppControllerRegisterTest {
                         .param("passwordConfirm", "password1")
                         .with(csrf()))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/login"));
+                .andExpect(redirectedUrl("/register?error"));
     }
     //Test case 3
     @Test
