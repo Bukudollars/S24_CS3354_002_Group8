@@ -1,6 +1,5 @@
 package com.Waterboi.API;
 
-import com.waterboi.api.model.Appuser;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,13 +7,15 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class AppControllerTest {
+public class AppControllerRegisterTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -26,6 +27,7 @@ public class AppControllerTest {
                 .andExpect(view().name("register"));
     }
 
+    //test case 1
     @Test
     @Transactional
     public void whenRegisterAppuser_theAppuserIsRegistered() throws Exception {
@@ -38,6 +40,22 @@ public class AppControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/login"));
     }
+
+    //Test case 2
+    @Test
+    @Transactional
+    public void whenRegisterAppuser_confirmPasswordInvalid_throwException() throws Exception{
+        assertTrue(false);
+    }
+    //Test case 3
+    @Test
+    @Transactional
+    public void whenRegisterAppuser_confirmPasswordIncorrectLength_throwException() throws Exception{
+        assertTrue(false);
+    }
+
+
+
 
     @Test
     @Transactional
@@ -54,4 +72,5 @@ public class AppControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/home"));
     }
+
 }
