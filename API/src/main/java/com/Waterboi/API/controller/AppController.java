@@ -7,7 +7,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 public class AppController {
@@ -16,6 +15,10 @@ public class AppController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/login";
+    }
 
     @GetMapping("/register")
     public String showRegistrationForm() {
