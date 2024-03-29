@@ -33,6 +33,7 @@ public class AppControllerTest {
         mockMvc.perform(post("/register")
                 .param("username", "newUser")
                 .param("password", "password")
+                .param("passwordConfirm", "password")
                 .with(csrf()))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/login"));
@@ -44,6 +45,7 @@ public class AppControllerTest {
         mockMvc.perform(post("/register")
                 .param("username", "newUser")
                 .param("password", "password")
+                .param("passwordConfirm", "password")
                 .with(csrf()));
         mockMvc.perform(post("/login")
                 .param("username", "newUser")
