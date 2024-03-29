@@ -1,18 +1,12 @@
-# S24_CS3354_002_Group8
-Spring 24 CS 3354 Section 2 Group 8 Project
-------------------------------------------------------
-How to build
-Windows: run "gradlew.bat build" 
-Linux: run "gradlew build"
+# Waterboi
+## Spring 24 CS 3354 Section 2 Group 8 Project
+## How to build
+- Windows: run "mavenw.cmd spring-boot:build" 
 -----------------------------------------------------
-How to run
-Run "java -jar API-0.0.1-SNAPSHOT.jar" 
-The JAR file is found in API\build\libs\
+## How to run
+- Windows: run "mavenw.cmd spring-boot:run" 
 -------------------------------------------------------
-API Enpoints:
-
-GET /users
-return list of users
-
-POST /users
-curl -X POST localhost:8080/users -H 'Content-type:application/json' -d '{"username": "new username", "password": "new password"}
+## How to use
+- navigate to http://localhost:8080/
+- register with a username and password
+- log in with same username and password
