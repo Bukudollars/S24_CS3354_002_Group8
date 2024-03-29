@@ -40,7 +40,7 @@ public class AppController {
                 return "redirect:/login";
             } else {throw new PasswordMismatchException("password: " + password + "passwordConfirm: " + passwordConfirm);}
         } catch (PasswordMismatchException e) {
-            return "redirect:/login?error";
+            return "redirect:/register?error";
         }
 
     }
