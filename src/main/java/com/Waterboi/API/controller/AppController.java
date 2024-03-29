@@ -1,6 +1,6 @@
 package com.waterboi.api.controller;
 
-import com.Waterboi.API.error.PasswordMismatchError;
+import com.Waterboi.API.exception.PasswordMismatchException;
 import com.waterboi.api.model.Appuser;
 import com.waterboi.api.repository.AppuserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +32,12 @@ public class AppController {
     }
 
     @PostMapping("/register")
-    public String processRegistration(String username, String password, String passwordConfirm) {
+    public String processRegistration(String username, String password, String passwordConfirm) throws Exception{
         if(password.equals(passwordConfirm)) {
             Appuser appuser = new Appuser(username, passwordEncoder.encode(password));
             appuserRepository.save(appuser);
             return "redirect:/login";
-        } else {throw new PasswordMismatchError("password: " + password + "passwordConfirm: " + passwordConfirm);}
+        } else {throw new PasswordMismatchException("password: " + password + "passwordConfirm: " + passwordConfirm);}
     }
 
     @GetMapping("/login")

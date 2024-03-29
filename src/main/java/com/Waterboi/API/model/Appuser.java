@@ -10,7 +10,7 @@ public class Appuser {
     @Column(unique = true, nullable = false)
     private String username;
 
-    @Column
+    @Column(nullable = false)
     private String password;
     Appuser() {}
 
