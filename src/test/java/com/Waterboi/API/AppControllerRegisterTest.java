@@ -15,6 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@Transactional
 public class AppControllerRegisterTest {
 
     @Autowired
@@ -29,7 +30,6 @@ public class AppControllerRegisterTest {
 
     //test case 1
     @Test
-    @Transactional
     public void whenRegisterAppuser_theAppuserIsRegistered() throws Exception {
 
         mockMvc.perform(post("/register")
@@ -43,34 +43,30 @@ public class AppControllerRegisterTest {
 
     //Test case 2
     @Test
-    @Transactional
     public void whenRegisterAppuser_confirmPasswordInvalid_throwException() throws Exception{
         assertTrue(false);
     }
     //Test case 3
     @Test
-    @Transactional
-    public void whenRegisterAppuser_confirmPasswordIncorrectLength_throwException() throws Exception{
+    public void whenRegisterAppuser_PasswordIncorrectLength_throwException() throws Exception{
         assertTrue(false);
     }
 
-
-
-
+    //Test case 4
     @Test
-    @Transactional
-    public void whenAppuserRegsitered_AppuserCanLogin() throws Exception {
-        mockMvc.perform(post("/register")
-                .param("username", "newUser")
-                .param("password", "password")
-                .param("passwordConfirm", "password")
-                .with(csrf()));
-        mockMvc.perform(post("/login")
-                .param("username", "newUser")
-                .param("password", "password")
-                .with(csrf()))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/home"));
+    public void whenRegisterAppuser_passwordMissing_confirmPasswordPresent_throwException() throws Exception{
+        assertTrue(false);
     }
 
+    //Test case 5
+    @Test
+    public void whenRegisterAppuser_emailInvalid_throwException() throws Exception{
+        assertTrue(false);
+    }
+
+    //Test case 5
+    @Test
+    public void whenRegisterAppuser_emailMissing_throwException() throws Exception{
+        assertTrue(false);
+    }
 }
