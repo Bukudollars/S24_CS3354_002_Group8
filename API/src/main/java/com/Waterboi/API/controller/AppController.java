@@ -22,6 +22,11 @@ public class AppController {
         return "register";
     }
 
+    @GetMapping("/home")
+    public String home() {
+        return "home";
+    }
+
     @PostMapping("/register")
     public String processRegistration(String username, String password) {
         Appuser appuser = new Appuser(username, passwordEncoder.encode(password));
