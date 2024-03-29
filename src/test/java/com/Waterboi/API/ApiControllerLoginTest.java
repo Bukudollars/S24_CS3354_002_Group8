@@ -25,6 +25,8 @@ public class ApiControllerLoginTest {
     private static final String PASSWORD_KEY = "password";
     private static final String TEST_PASSWORD = "password";
     private static final String PASSWORD_CONFIRM_KEY = "passwordConfirm";
+    private static final String LOGIN_URL = "/login";
+    private static final String LOGIN_ERROR_URL = "/login?error";
     @Autowired
     private MockMvc mockMvc;
 
@@ -40,7 +42,7 @@ public class ApiControllerLoginTest {
     @Test
     public void whenAppuserRegsitered_AppuserCanLogin() throws Exception {
 
-        mockMvc.perform(post("/login")
+        mockMvc.perform(post(LOGIN_URL)
                         .param(USERNAME_KEY, TEST_USERNAME)
                         .param(PASSWORD_KEY, TEST_PASSWORD)
                         .with(csrf()))
@@ -51,43 +53,43 @@ public class ApiControllerLoginTest {
     //Test 2
     @Test
     public void whenAppuserRegistered_wrongPassword_ThrowException() throws Exception {
-        mockMvc.perform(post("/login")
+        mockMvc.perform(post(LOGIN_URL)
                         .param(USERNAME_KEY, TEST_USERNAME)
                         .param(PASSWORD_KEY, TEST_PASSWORD + "wrong password")
                         .with(csrf()))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/login?error"));
+                .andExpect(redirectedUrl(LOGIN_ERROR_URL));
     }
 
     //Test 3
     @Test
     public void whenAppuserRegistered_missingPassword_ThrowException() throws Exception {
-        mockMvc.perform(post("/login")
+        mockMvc.perform(post(LOGIN_URL)
                         .param(USERNAME_KEY, TEST_USERNAME)
                         .param(PASSWORD_KEY, "")
                         .with(csrf()))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/login?error"));
+                .andExpect(redirectedUrl(LOGIN_ERROR_URL));
     }
     //Test 4
     @Test
     public void whenAppuserRegistered_wrongEmail_ThrowException() throws Exception {
-        mockMvc.perform(post("/login")
+        mockMvc.perform(post(LOGIN_URL)
                         .param(USERNAME_KEY, TEST_USERNAME + "wrong username")
                         .param(PASSWORD_KEY, TEST_PASSWORD)
                         .with(csrf()))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/login?error"));
+                .andExpect(redirectedUrl(LOGIN_ERROR_URL));
     }
 
     //Test 5
     @Test
     public void whenAppuserRegistered_missingEmail_ThrowException() throws Exception {
-        mockMvc.perform(post("/login")
+        mockMvc.perform(post(LOGIN_URL)
                         .param(USERNAME_KEY, "")
                         .param(PASSWORD_KEY, TEST_PASSWORD)
                         .with(csrf()))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/login?error"));
+                .andExpect(redirectedUrl(LOGIN_ERROR_URL));
     }
 }
