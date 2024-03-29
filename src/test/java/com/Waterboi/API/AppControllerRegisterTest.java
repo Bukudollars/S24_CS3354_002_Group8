@@ -55,24 +55,48 @@ public class AppControllerRegisterTest {
     //Test case 3
     @Test
     public void whenRegisterAppuser_PasswordIncorrectLength_throwException() throws Exception{
-        assertTrue(false);
+        mockMvc.perform(post("/register")
+                        .param("username", "newUser")
+                        .param("password", "pass")
+                        .param("passwordConfirm", "pass")
+                        .with(csrf()))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/register?error"));
     }
 
     //Test case 4
     @Test
     public void whenRegisterAppuser_passwordMissing_confirmPasswordPresent_throwException() throws Exception{
-        assertTrue(false);
+        mockMvc.perform(post("/register")
+                        .param("username", "newUser")
+                        .param("passwordConfirm", "password")
+                        .param("passwordConfirm", "")
+                        .with(csrf()))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/register?error"));
     }
 
     //Test case 5
     @Test
     public void whenRegisterAppuser_emailInvalid_throwException() throws Exception{
-        assertTrue(false);
+        mockMvc.perform(post("/register")
+                        .param("username", "invalidEmail")
+                        .param("password", "password")
+                        .param("passwordConfirm", "password")
+                        .with(csrf()))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/register?error"));
     }
 
-    //Test case 5
+    //Test case 6
     @Test
     public void whenRegisterAppuser_emailMissing_throwException() throws Exception{
-        assertTrue(false);
+        mockMvc.perform(post("/register")
+                        .param("username", "")
+                        .param("password", "password")
+                        .param("passwordConfirm", "password")
+                        .with(csrf()))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/register?error"));
     }
 }
