@@ -17,7 +17,7 @@ public class AppController {
     private PasswordEncoder passwordEncoder;
     @GetMapping("/")
     public String index() {
-        return "redirect:/login";
+        return "redirect:/register";
     }
 
     @GetMapping("/register")
