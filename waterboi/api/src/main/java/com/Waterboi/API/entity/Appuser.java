@@ -1,4 +1,4 @@
-package com.Waterboi.API.model;
+package com.Waterboi.API.entity;
 
 import jakarta.persistence.*;
 
@@ -12,7 +12,7 @@ public class Appuser {
 
     @Column(nullable = false)
     private String password;
-    Appuser() {}
+    private Appuser() {}
 
     public Appuser(String username, String password) {
         this.username = username.toLowerCase();

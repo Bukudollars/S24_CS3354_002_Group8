@@ -1,6 +1,6 @@
 package com.Waterboi.API.service;
 
-import com.Waterboi.API.model.Appuser;
+import com.Waterboi.API.entity.Appuser;
 import com.Waterboi.API.repository.AppuserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -15,7 +15,7 @@ public class AppuserDetailsService implements UserDetailsService {
     private AppuserRepository repository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Appuser appuser = repository.findByUsernameIgnoreCase(username);
+        Appuser appuser = repository.findByUsernameIgnoreCase(username).orElseThrow();
         User.UserBuilder builder = null;
         if(appuser != null) {
             builder = User.withUsername(username);
