@@ -24,7 +24,7 @@ public class AppuserRepositoryTest {
         entityManager.persist(appuser);
         entityManager.flush();
 
-        Appuser found = appuserRepository.findByUsernameIgnoreCase(appuser.getUsername());
+        Appuser found = appuserRepository.findByUsernameIgnoreCase(appuser.getUsername()).orElseThrow();
         assertThat(found.getUsername()).isEqualTo(appuser.getUsername());
     }
 }
