@@ -1,4 +1,4 @@
-package com.Waterboi.API.model;
+package com.Waterboi.API.entity;
 
 import jakarta.persistence.*;
 

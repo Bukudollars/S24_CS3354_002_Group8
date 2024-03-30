@@ -1,6 +1,6 @@
 package com.Waterboi.API.service;
 
-import com.Waterboi.API.model.Appuser;
+import com.Waterboi.API.entity.Appuser;
 import com.Waterboi.API.repository.AppuserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
