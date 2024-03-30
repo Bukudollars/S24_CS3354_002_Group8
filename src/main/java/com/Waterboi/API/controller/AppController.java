@@ -33,11 +33,16 @@ public class AppController {
 
     @PostMapping("/register")
     public String processRegistration(String username, String password, String passwordConfirm) throws Exception{
-        if(password.equals(passwordConfirm)) {
-            Appuser appuser = new Appuser(username, passwordEncoder.encode(password));
-            appuserRepository.save(appuser);
-            return "redirect:/login";
-        } else {throw new PasswordMismatchException("password: " + password + "passwordConfirm: " + passwordConfirm);}
+        try {
+            if(password.equals(passwordConfirm)) {
+                Appuser appuser = new Appuser(username, passwordEncoder.encode(password));
+                appuserRepository.save(appuser);
+                return "redirect:/login";
+            } else {throw new PasswordMismatchException("password: " + password + "passwordConfirm: " + passwordConfirm);}
+        } catch (PasswordMismatchException e) {
+            return "redirect:/register?error";
+        }
+
     }
 
     @GetMapping("/login")
