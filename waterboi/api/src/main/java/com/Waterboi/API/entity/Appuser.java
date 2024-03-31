@@ -2,6 +2,10 @@ package com.Waterboi.API.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 public class Appuser {
     @Id
@@ -12,6 +16,7 @@ public class Appuser {
 
     @Column(nullable = false)
     private String password;
+
     private Appuser() {}
 
     public Appuser(String username, String password) {

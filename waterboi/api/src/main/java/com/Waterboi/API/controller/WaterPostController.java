@@ -1,10 +1,12 @@
 package com.Waterboi.API.controller;
 
+import com.Waterboi.API.entity.AppuserDetails;
 import com.Waterboi.API.entity.WaterPost;
 import com.Waterboi.API.repository.AppuserRepository;
 import com.Waterboi.API.repository.UnitOfMeasureRepository;
 import com.Waterboi.API.repository.WaterPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -28,14 +30,16 @@ public class WaterPostController {
     }
 
     @PostMapping("/new")
-    public WaterPost newWaterPost(@RequestBody WaterPostDto waterPostDto) {
+    public WaterPost newWaterPost(@AuthenticationPrincipal AppuserDetails appuserDetails,
+                                  @RequestBody WaterPostDto waterPostDto) {
+        Long userId = appuserDetails.getUserId();
         if (waterPostDto.quantity() < 0.0) {throw new IllegalArgumentException("Quantity cannot be negative.");}
         if (!unitOfMeasureRepository.existsById(waterPostDto.unitOfMeasureId())) {
             throw new NoSuchElementException("Unit of measure ID not found");
         }
 
         return waterPostRepository.save(new WaterPost(
-                1l,
+                userId,
                 waterPostDto.quantity(),
                 waterPostDto.unitOfMeasureId(),
                 LocalDateTime.now()));
