@@ -40,6 +40,11 @@ public class DataPreloader implements CommandLineRunner{
         appuserRepository.save(appuser);
         UnitOfMeasure unitOfMeasure = new UnitOfMeasure("liter", 1);
         unitOfMeasureRepository.save(unitOfMeasure);
+        unitOfMeasureRepository.save(new UnitOfMeasure("cup", 0.236588));
+        unitOfMeasureRepository.save(new UnitOfMeasure("pint", 0.473176));
+        unitOfMeasureRepository.save(new UnitOfMeasure("quart", 0.946353));
+        unitOfMeasureRepository.save(new UnitOfMeasure("gallon", 3.78541));
+
         waterPostRepository.save(
                 new WaterPost(//1L, 1.0, 1L, LocalDateTime.now()
                         appuserRepository.findByUsernameIgnoreCase(appuser.getUsername()).orElseThrow().getId(),

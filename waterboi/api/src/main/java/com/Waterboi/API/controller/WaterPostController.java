@@ -1,6 +1,7 @@
 package com.Waterboi.API.controller;
 
 import com.Waterboi.API.entity.AppuserDetails;
+import com.Waterboi.API.entity.UnitOfMeasure;
 import com.Waterboi.API.entity.WaterPost;
 import com.Waterboi.API.repository.AppuserRepository;
 import com.Waterboi.API.repository.UnitOfMeasureRepository;
@@ -24,9 +25,15 @@ public class WaterPostController {
     @Autowired
     private UnitOfMeasureRepository unitOfMeasureRepository;
 
+    @GetMapping("/unitOfMeasure")
+    public List<UnitOfMeasure> getUnitsOfMeasure() {
+        return unitOfMeasureRepository.findAll();
+    }
+
     @GetMapping("/all")
-    public List<WaterPost> getAllPosts() {
-        return waterPostRepository.findAll();
+    public List<WaterPost> getAllPosts(@AuthenticationPrincipal AppuserDetails appuserDetails) {
+        Long userId = appuserDetails.getUserId();
+        return waterPostRepository.findByAppuserId(userId);
     }
 
     @PostMapping("/new")
