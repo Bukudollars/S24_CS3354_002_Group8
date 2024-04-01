@@ -53,5 +53,11 @@ public class WaterPostController {
                 waterPostDto.unitId(),
                 LocalDateTime.now()));
     }
+    @GetMapping("/sum")
+    public double getSum(@AuthenticationPrincipal AppuserDetails appuserDetails) {
+        Long appuserId = appuserDetails.getUserId();
+        Double sum = waterPostRepository.sumQuantity(appuserId);
+        return sum != null ? sum: 0.0;
+    }
 
 }
