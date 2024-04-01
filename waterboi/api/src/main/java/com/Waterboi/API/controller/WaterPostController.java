@@ -41,13 +41,15 @@ public class WaterPostController {
                                   @RequestBody WaterPostDto waterPostDto) {
         Long userId = appuserDetails.getUserId();
         if (waterPostDto.quantity() < 0.0) {throw new IllegalArgumentException("Quantity cannot be negative.");}
-        if (!unitRepository.existsById(waterPostDto.unitId())) {
-            throw new NoSuchElementException("Unit ID not found");
-        }
+
+        //quantity of water drank is converted to liters before saving in the repository
+        double quantity = waterPostDto.quantity() * unitRepository.findById(waterPostDto.unitId())
+                .orElseThrow(() -> new NoSuchElementException("Unit ID not found"))
+                .getLiterMultiple();
 
         return waterPostRepository.save(new WaterPost(
                 userId,
-                waterPostDto.quantity(),
+                quantity,
                 waterPostDto.unitId(),
                 LocalDateTime.now()));
     }

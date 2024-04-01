@@ -13,10 +13,14 @@ function App() {
         .then(response => response.json())
         .then(data => {
             const unitsMap = data.reduce((acc, unit) => {
-                acc[unit.id] = unit.name;
+                acc[unit.id] = {
+                    name: unit.name,
+                    literMultiple: unit.literMultiple
+                }
                 return acc;
             }, {});
             setUnits(unitsMap);
+            console.log(unitsMap);
         })
         .catch(error => console.error('Error fetching units:', error));
     }, []);
@@ -36,9 +40,9 @@ function App() {
                     {posts.map(post => (
                         <tr key={post.id}>
                             <td>{post.appuserId}</td>
-                            <td>{post.quantity}</td>
-                            <td>{units[post.unitId] || 'Loading...'}</td>
-                            <td>{post.postTime}</td>
+                            <td>{units[post.unitId]?.name || 'Loading...'}</td>
+                            <td>{post.quantity / units[post.unitId]?.literMultiple || 'Loading...'}</td>
+                            <td>{(new Date(post.postTime)).toString()}</td>
                         </tr>
                     ))}
                 </tbody>
