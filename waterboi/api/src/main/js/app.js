@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from 'react';
 function App() {
-    const [data, setData] = useState([]);
+    const [posts, setPosts] = useState([]);
+    const [units, setUnits] = useState({});
 
     useEffect(() => {
-        fetch('http://localhost:8080/api/post/all')
+        fetch('/api/post/all')
         .then(response => response.json())
-        .then(data => setData(data))
+        .then(data => setPosts(data))
         .catch(error => console.error('Error fetching data:', error));
+
+        fetch('/api/post/units')
+        .then(response => response.json())
+        .then(data => {
+            const unitsMap = data.reduce((acc, unit) => {
+                acc[unit.id] = unit.name;
+                return acc;
+            }, {});
+            setUnits(unitsMap);
+        })
+        .catch(error => console.error('Error fetching units:', error));
     }, []);
 
     return (
@@ -16,17 +28,17 @@ function App() {
                     <tr>
                         <th>appuserId</th>
                         <th>quantity</th>
-                        <th>unitOfMeasureId</th>
+                        <th>unit</th>
                         <th>postTime</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map(item => (
-                        <tr key={item.id}>
-                            <td>{item.appuserId}</td>
-                            <td>{item.quantity}</td>
-                            <td>{item.unitOfMeasureId}</td>
-                            <td>{item.postTime}</td>
+                    {posts.map(post => (
+                        <tr key={post.id}>
+                            <td>{post.appuserId}</td>
+                            <td>{post.quantity}</td>
+                            <td>{units[post.unitId] || 'Loading...'}</td>
+                            <td>{post.postTime}</td>
                         </tr>
                     ))}
                 </tbody>
