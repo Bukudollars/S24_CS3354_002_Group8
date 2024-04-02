@@ -55,9 +55,30 @@ public class WaterPostController {
     }
     @GetMapping("/sum")
     public double getSum(@AuthenticationPrincipal AppuserDetails appuserDetails) {
-        Long appuserId = appuserDetails.getUserId();
-        Double sum = waterPostRepository.sumQuantity(appuserId);
-        return sum != null ? sum: 0.0;
+        return waterPostRepository.sumQuantity(appuserDetails.getUserId()).orElse(0.0);
     }
-
+    @GetMapping("sum/day")
+    public double getSumDay(@AuthenticationPrincipal AppuserDetails appuserDetails) {
+        return waterPostRepository.sumQuantity(
+                appuserDetails.getUserId(),
+                LocalDateTime.now().minusDays(1L),
+                LocalDateTime.now()
+        ).orElse(0.0);
+    }
+    @GetMapping("/sum/week")
+    public double getSumWeek(@AuthenticationPrincipal AppuserDetails appuserDetails) {
+        return waterPostRepository.sumQuantity(
+                appuserDetails.getUserId(),
+                LocalDateTime.now().minusWeeks(1L),
+                LocalDateTime.now()
+        ).orElse(0.0);
+    }
+    @GetMapping("/sum/month")
+    public double getSumMonth(@AuthenticationPrincipal AppuserDetails appuserDetails) {
+        return waterPostRepository.sumQuantity(
+                appuserDetails.getUserId(),
+                LocalDateTime.now().minusMonths(1L),
+                LocalDateTime.now()
+        ).orElse(0.0);
+    }
 }
