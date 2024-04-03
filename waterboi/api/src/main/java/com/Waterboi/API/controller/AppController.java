@@ -42,7 +42,6 @@ public class AppController {
         } catch (PasswordMismatchException e) {
             return "redirect:/register?error";
         }
-
     }
 
 //    @GetMapping("/login")

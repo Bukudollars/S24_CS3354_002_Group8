@@ -28,7 +28,7 @@ module.exports = {
                 test: /\.(woff|woff2)$/,
                 type: 'asset/resource',
                 generator: {
-                    filename: 'fonts/[name][ext]', // Specifies the output directory for font files
+                    filename: 'src/main/resources/static/fonts/[name][ext]', // Specifies the output directory for font files
                 },
             },
         ],
