@@ -69,7 +69,7 @@ public class AppControllerRegisterTest {
     public void whenRegisterAppuser_passwordMissing_confirmPasswordPresent_throwException() throws Exception{
         mockMvc.perform(post("/register")
                         .param("username", "newUser@gmail.com")
-                        .param("password", "password")
+                        .param("password", "password123")
                         .param("passwordConfirm", "")
                         .with(csrf()))
                 .andExpect(status().is3xxRedirection())
@@ -81,8 +81,8 @@ public class AppControllerRegisterTest {
     public void whenRegisterAppuser_emailInvalid_throwException() throws Exception{
         mockMvc.perform(post("/register")
                         .param("username", "invalidEmail")
-                        .param("password", "password")
-                        .param("passwordConfirm", "password")
+                        .param("password", "password123")
+                        .param("passwordConfirm", "password123")
                         .with(csrf()))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/register?error"));
@@ -93,8 +93,8 @@ public class AppControllerRegisterTest {
     public void whenRegisterAppuser_emailMissing_throwException() throws Exception{
         mockMvc.perform(post("/register")
                         .param("username", "")
-                        .param("password", "password")
-                        .param("passwordConfirm", "password")
+                        .param("password", "password123")
+                        .param("passwordConfirm", "password123")
                         .with(csrf()))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/register?error"));
