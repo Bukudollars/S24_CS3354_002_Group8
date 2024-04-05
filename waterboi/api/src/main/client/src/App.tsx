@@ -1,0 +1,37 @@
+//import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
+import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Env } from './Env';
+
+function App() {
+  //const [count, setCount] = useState(0)
+  //const baseUrl: String = import.meta.env.VITE_API_BASE_URL;
+
+  useEffect(() => {
+    fetch(`${Env.API_BASE_URL}/ping`)
+      .then(response => response.text())
+      .then(body => console.log(body));
+  }, []);
+  console.log(Env);
+
+  return (
+    <>
+      <div>
+        <a href="https://vitejs.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+      </div>
+      <h1>Vite + React</h1>
+ 
+      <Link to='/cake'>Visit /cake</Link>
+    </>
+  )
+}
+
+export default App

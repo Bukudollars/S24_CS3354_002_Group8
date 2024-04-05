@@ -16,10 +16,10 @@ public class AppController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-    @GetMapping("/")
-    public String index() {
-        return "redirect:/register";
-    }
+//    @GetMapping("/")
+//    public String index() {
+//        return "redirect:/register";
+//    }
 
     @GetMapping("/register")
     public String showRegistrationForm() {
