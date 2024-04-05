@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -24,18 +25,23 @@ public class SecurityConfig {
 //                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 //
 //                )
+                //.httpBasic(config -> {})
                 .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(authz -> authz
+                .authorizeHttpRequests(config -> config
                         //.requestMatchers("/", "/register*", "/login*", "/css/**", "/js/**", "/error","/fonts*","/api/**")
-                        .requestMatchers("*/**", "/")
+                        //.requestMatchers("*/**", "/")
+                        .requestMatchers("/api/ping", "/login", "/assets/**")
                         .permitAll()
                         .anyRequest().authenticated()
                 )
-//                .formLogin(formLogin -> formLogin
-//                        //.loginPage("/login")
-//                        .defaultSuccessUrl("/home", true)
-//                        .permitAll()
-//                )
+//                .sessionManagement(config -> {
+//                    config.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//                })
+                .formLogin(formLogin -> formLogin
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/home", true)
+                        .permitAll()
+                )
                 .logout(logout -> logout
                         .permitAll()
                 )

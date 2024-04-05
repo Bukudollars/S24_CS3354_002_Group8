@@ -15,7 +15,6 @@ function App() {
       .then(response => response.text())
       .then(body => console.log(body));
   }, []);
-  console.log(Env);
 
   return (
     <>

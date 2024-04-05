@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import SignIn from './SignIn.tsx';
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -11,6 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/cake" element={<div style={{ fontSize: 150 }}>🍰</div>} />
+        <Route path="/login" element={<SignIn />} />
       </Routes>
     </Router>
   </React.StrictMode>,
