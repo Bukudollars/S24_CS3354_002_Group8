@@ -4,11 +4,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
@@ -30,7 +28,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(config -> config
                         //.requestMatchers("/", "/register*", "/login*", "/css/**", "/js/**", "/error","/fonts*","/api/**")
                         //.requestMatchers("*/**", "/")
-                        .requestMatchers("/api/ping", "/login", "/assets/**")
+                        .requestMatchers("/api/ping", "/login", "/register", "/assets/**")
                         .permitAll()
                         .anyRequest().authenticated()
                 )

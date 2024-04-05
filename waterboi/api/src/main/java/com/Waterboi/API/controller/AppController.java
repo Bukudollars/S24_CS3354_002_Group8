@@ -1,13 +1,9 @@
 package com.Waterboi.API.controller;
 
-import com.Waterboi.API.exception.PasswordMismatchException;
-import com.Waterboi.API.entity.Appuser;
 import com.Waterboi.API.repository.AppuserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class AppController {
@@ -21,28 +17,28 @@ public class AppController {
 //        return "redirect:/register";
 //    }
 
-    @GetMapping("/register")
-    public String showRegistrationForm() {
-        return "register";
-    }
+//    @GetMapping("/register")
+//    public String showRegistrationForm() {
+//        return "register";
+//    }
 
-    @GetMapping("/home")
-    public String home() {
-        return "home";
-    }
+//    @GetMapping("/home")
+//    public String home() {
+//        return "home";
+//    }
 
-    @PostMapping("/register")
-    public String processRegistration(String username, String password, String passwordConfirm) throws Exception{
-        try {
-            if(password.equals(passwordConfirm)) {
-                Appuser appuser = new Appuser(username, passwordEncoder.encode(password));
-                appuserRepository.save(appuser);
-                return "redirect:/login";
-            } else {throw new PasswordMismatchException("password: " + password + "passwordConfirm: " + passwordConfirm);}
-        } catch (PasswordMismatchException e) {
-            return "redirect:/register?error";
-        }
-    }
+//    @PostMapping("/register")
+//    public String processRegistration(String username, String password, String passwordConfirm) throws Exception{
+//        try {
+//            if(password.equals(passwordConfirm)) {
+//                Appuser appuser = new Appuser(username, passwordEncoder.encode(password));
+//                appuserRepository.save(appuser);
+//                return "redirect:/login";
+//            } else {throw new PasswordMismatchException("password: " + password + "passwordConfirm: " + passwordConfirm);}
+//        } catch (PasswordMismatchException e) {
+//            return "redirect:/register?error";
+//        }
+//    }
 
 //    @GetMapping("/login")
 //    public String showLoginForm() {
