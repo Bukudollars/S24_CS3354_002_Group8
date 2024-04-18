@@ -6,7 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
-public class UnitOfMeasure {
+public class Unit {
     @Id
     @GeneratedValue
     private Long id;
@@ -14,9 +14,9 @@ public class UnitOfMeasure {
     private String name;
     @Column(nullable = false)
     private double literMultiple;
-    private UnitOfMeasure() {}
+    private Unit() {}
 
-    public UnitOfMeasure(String name, double literMultiple) {
+    public Unit(String name, double literMultiple) {
         this.name = name.toLowerCase();
         this.literMultiple = literMultiple;
     }

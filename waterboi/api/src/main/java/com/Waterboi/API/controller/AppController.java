@@ -1,6 +1,5 @@
 package com.Waterboi.API.controller;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 import com.Waterboi.API.exception.PasswordMismatchException;
 import com.Waterboi.API.entity.Appuser;
 import com.Waterboi.API.repository.AppuserRepository;
@@ -76,7 +75,6 @@ public class AppController {
         return false;
 
     }
-
 
 //    @GetMapping("/login")
 //    public String showLoginForm() {
