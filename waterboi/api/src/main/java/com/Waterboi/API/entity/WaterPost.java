@@ -14,19 +14,19 @@ public class WaterPost {
     @GeneratedValue
     private Long id;
     @Column(nullable = false)
-    private Long appuserID;
+    private Long appuserId;
     @Column(nullable = false)
     private double quantity;
     @Column(nullable = false)
-    private Long unitOfMeasureId;
+    private Long unitId;
     @Column(nullable = false)
     private LocalDateTime postTime;
 
     private WaterPost() {}
-    public WaterPost(Long appuserID, double quantity, Long unitOfMeasureId, LocalDateTime postTime) {
-        this.appuserID = appuserID;
+    public WaterPost(Long appuserID, double quantity, Long unitId, LocalDateTime postTime) {
+        this.appuserId = appuserID;
         this.quantity = quantity;
-        this.unitOfMeasureId = unitOfMeasureId;
+        this.unitId = unitId;
         this.postTime = postTime;
     }
 
@@ -34,16 +34,16 @@ public class WaterPost {
         return id;
     }
 
-    public Long getAppuserID() {
-        return appuserID;
+    public Long getAppuserId() {
+        return appuserId;
     }
 
     public double getQuantity() {
         return quantity;
     }
 
-    public Long getUnitOfMeasureId() {
-        return unitOfMeasureId;
+    public Long getUnitId() {
+        return unitId;
     }
 
     public LocalDateTime getPostTime() {
