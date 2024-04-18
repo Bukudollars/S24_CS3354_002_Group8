@@ -10,13 +10,14 @@ public class AppuserProfile {
     @Id
     @GeneratedValue
     private Long id;
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, updatable = false)
     private Long appuserId;
     private double dailyGoal;
 
     public AppuserProfile() {};
     public AppuserProfile(Long appuserId) {
         this.appuserId = appuserId;
+        dailyGoal = 0;
     }
     public long getId() {
         return id;

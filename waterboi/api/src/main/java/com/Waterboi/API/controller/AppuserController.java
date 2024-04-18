@@ -9,9 +9,7 @@ import org.springframework.security.authentication.AuthenticationCredentialsNotF
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.NoSuchElementException;
 
@@ -35,4 +33,13 @@ public class AppuserController {
         return appuserProfileRepository.findByAppuserId(appuserDetails.getUserId())
                 .orElseThrow(() -> new NoSuchElementException("User not found"));
     }
+    @PostMapping("/profile/goal/day")
+    public double setDailyGoal(@AuthenticationPrincipal AppuserDetails appuserDetails, @RequestBody GoalDto goalDto) {
+        AppuserProfile appuserProfile = appuserProfileRepository.findByAppuserId(appuserDetails.getUserId())
+                .orElseThrow(() -> new NoSuchElementException("User not found"));
+        appuserProfile.setDailyGoal(goalDto.goal());
+        appuserProfileRepository.save(appuserProfile);
+        return goalDto.goal();
+    }
+    private record GoalDto(double goal) {}
 }
