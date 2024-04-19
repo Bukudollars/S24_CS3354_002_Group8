@@ -104,7 +104,7 @@ const AddDrink = () => {
         </Tab>
       </TabList>
       <Question>Sure about that?</Question>
-      <ButtonTwo>I'm Sure!</ButtonTwo>
+      <ButtonTwo onClick={() =>  handleSubmit } >I am Sure!</ButtonTwo>
     </Holder>
   );
 };
