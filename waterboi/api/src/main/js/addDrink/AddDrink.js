@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Container, TextField, Button, Typography } from '@mui/material';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { DashboardContext } from '../dashboard/DashboardContext';
+import { useContext } from 'react';
+
+
 
 const Holder = styled.div`
   background-color: white;
@@ -20,24 +23,6 @@ const Input = styled.input`
   margin-bottom: 20px;
 `;
 
-const TabList = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-`;
-
-const Tab = styled.button`
-  background-color: ${props => (props.active ? 'black' : 'white')};
-  color: ${props => (props.active ? 'white' : 'black')};
-  border: 1px solid black;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-
-  &:not(:last-child) {
-    margin-right: 10px;
-  }
-`;
 
 const Question = styled.p`
   margin-bottom: 20px;
@@ -53,17 +38,15 @@ const ButtonTwo = styled.button`
 `;
 
 const AddDrink = () => {
+  const { setCurrentView } = useContext(DashboardContext);
   const [value, setValue] = useState('2');
-  const [activeTab, setActiveTab] = useState('Cups');
 
   const handleInputChange = (e) => {
     setValue(e.target.value);
   };
 
-  const handleTabClick = (tab) => {
-    setActiveTab(tab);
-  };
   const handleSubmit = (event) => {
+  
     fetch('/api/post/new', {
       method: 'POST',
       headers: {
@@ -73,8 +56,9 @@ const AddDrink = () => {
         quantity: value,
       unitId : 1 }),
     });
+    setCurrentView('drinks');
   };
-
+  
   return (
     <Holder>
       <Title>Been Drinking?</Title>
