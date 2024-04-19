@@ -63,6 +63,17 @@ const AddDrink = () => {
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
+  const handleSubmit = (event) => {
+    fetch('/api/post/new', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ 
+        quantity: value,
+      unitId : 1 }),
+    });
+  };
 
   return (
     <Holder>
