@@ -29,6 +29,12 @@ export function MainListItems() {
       </ListItemIcon>
       <ListItemText primary="Drinks" />
     </ListItemButton>
+    <ListItemButton onClick={() => setCurrentView('add-drink')}>
+      <ListItemIcon>
+        <LocalDrinkIcon />
+      </ListItemIcon>
+      <ListItemText primary="Add Drink" />
+    </ListItemButton>
     <ListItemButton onClick={() => {
         setCurrentView('profile');
     }}>

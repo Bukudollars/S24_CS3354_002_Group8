@@ -46,6 +46,7 @@ public class AppuserController {
         return profileDto;
     }
 
+    private record GoalDto(double goal) {}
     @PostMapping("/profile/goal/day")
     public double setDailyGoal(@AuthenticationPrincipal AppuserDetails appuserDetails, @RequestBody GoalDto goalDto) {
         AppuserProfile appuserProfile = appuserProfileRepository.findByAppuserId(appuserDetails.getUserId())
@@ -54,5 +55,5 @@ public class AppuserController {
         appuserProfileRepository.save(appuserProfile);
         return goalDto.goal();
     }
-    private record GoalDto(double goal) {}
+
 }

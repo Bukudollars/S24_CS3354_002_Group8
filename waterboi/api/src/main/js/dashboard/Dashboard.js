@@ -22,6 +22,7 @@ import Orders from './Orders';
 import Profile from '../profile/Profile';
 import Progress from '../progress/Progress';
 import { DashboardContext } from './DashboardContext';
+import AddDrink from '../addDrink/AddDrink';
 
 
 function Copyright(props) {
@@ -198,7 +199,10 @@ export default function Dashboard() {
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  {currentView === 'profile' ? <Profile /> : currentView === 'drinks' ? <Orders />: <Progress />}
+                  {currentView === 'profile' ? <Profile /> 
+                  : currentView === 'drinks' ? <Orders />
+                  : currentView === 'add-drink'? <AddDrink />
+                  : <Progress />}
                 </Paper>
               </Grid>
 

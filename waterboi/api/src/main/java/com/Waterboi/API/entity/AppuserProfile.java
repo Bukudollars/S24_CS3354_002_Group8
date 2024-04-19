@@ -1,9 +1,6 @@
 package com.Waterboi.API.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class AppuserProfile {
@@ -13,6 +10,9 @@ public class AppuserProfile {
     @Column(unique = true, nullable = false, updatable = false)
     private Long appuserId;
     private double dailyGoal;
+    @ManyToOne
+    @JoinColumn(name = "unit_id")
+    private Unit preferredUnit;
 
     public AppuserProfile() {};
     public AppuserProfile(Long appuserId) {
