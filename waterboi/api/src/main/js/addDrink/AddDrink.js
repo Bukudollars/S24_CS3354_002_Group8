@@ -1,61 +1,76 @@
-import React, { useState, useEffect } from 'react';
-import { Container, TextField, Button, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { DashboardContext } from '../dashboard/DashboardContext';
+import { useContext } from 'react';
 
-export default function AddDrink() {
-    const [drink, setDrink] = useState([]);
-    useEffect(() => {
-    }, []);
+
+
+const Holder = styled.div`
+  background-color: white;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+`;
+
+const Title = styled.h1`
+  color: black;
+  margin-bottom: 20px;
+`;
+
+const Input = styled.input`
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 20px;
+`;
+
+
+const Question = styled.p`
+  margin-bottom: 20px;
+`;
+
+const ButtonTwo = styled.button`
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+`;
+
+const AddDrink = () => {
+  const { setCurrentView } = useContext(DashboardContext);
+  const [value, setValue] = useState('2');
+
+  const handleInputChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  const handleSubmit = (event) => {
   
-    const handleChange = (event) => {
-      setDrink({ ...drink, [event.target.name]: event.target.value });
-    };
+    fetch('/api/post/new', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ 
+        quantity: value,
+      unitId : 1 }),
+    });
+    setCurrentView('drinks');
+  };
   
-    const handleSubmit = (event) => {
-      event.preventDefault();
-  
-      fetch('/api/user/profile', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ goal: user.goal }),
-      });
-    };
-  
-    return (
-      <Container sx={{maxWidth: 'sm'}}>
-        <Typography variant="h4" align="center">User Profile</Typography>
-        <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-          <TextField
-            name="quantity"
-            label="amount"
-            value={drink.quantity}
-            onChange={handleChange}
-            fullWidth
-            margin="normal"
-          />
-          {/* <TextField
-            name="email"
-            label="Email"
-            value={user.email}
-            onChange={handleChange}
-            fullWidth
-            margin="normal"
-          /> */}
-          {/* <TextField
-            name="bio"
-            label="Bio"
-            value={user.bio}
-            onChange={handleChange}
-            fullWidth
-            multiline
-            rows={4}
-            margin="normal"
-          /> */}
-          <Button variant="contained" color="primary" fullWidth type="submit">
-            Save
-          </Button>
-        </form>
-      </Container>
-    );
-  }
+  return (
+    <Holder>
+      <Title>Been Drinking?</Title>
+      <Input
+        type="text"
+        value={value}
+        onChange={handleInputChange}
+      />
+      <Question>Sure about that?</Question>
+      <ButtonTwo onClick={handleSubmit} >I am Sure!</ButtonTwo>
+    </Holder>
+  );
+};
+
+export default AddDrink;

@@ -20,3 +20,7 @@ waterboi/api/package-lock.json
 waterboi/api/src/main/resources/static/built/bundle.js
 /waterboi/api/src/main/resources/static/built
 .DS_Store
+.idea/modules.xml
+.idea/S24_CS3354_002_Group8.iml
+.idea/workspace.xml
+.idea/workspace.xml
