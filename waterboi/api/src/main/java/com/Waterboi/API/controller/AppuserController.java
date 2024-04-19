@@ -39,6 +39,10 @@ public class AppuserController {
 
     @PostMapping("/profile")
     public ProfileDto setAppuserProfile(@AuthenticationPrincipal AppuserDetails appuserDetails, @RequestBody ProfileDto profileDto) {
+        if (profileDto.goal() <= 0 || profileDto.goal() >= 1000) {
+            throw new IllegalArgumentException("Invalid daily goal value");
+        }
+
         AppuserProfile appuserProfile = appuserProfileRepository.findByAppuserId(appuserDetails.getUserId())
                 .orElseThrow(() -> new NoSuchElementException("User not found"));
         appuserProfile.setDailyGoal(profileDto.goal());
