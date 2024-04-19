@@ -1,7 +1,9 @@
 package com.Waterboi.API.controller;
 
+import com.Waterboi.API.entity.AppuserProfile;
 import com.Waterboi.API.exception.PasswordMismatchException;
 import com.Waterboi.API.entity.Appuser;
+import com.Waterboi.API.repository.AppuserProfileRepository;
 import com.Waterboi.API.repository.AppuserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,6 +18,8 @@ import java.util.regex.Pattern;
 public class AppController {
     @Autowired
     private AppuserRepository appuserRepository;
+    @Autowired
+    private AppuserProfileRepository appuserProfileRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -41,6 +45,7 @@ public class AppController {
                 if (validatePassword(password) && password.equals(passwordConfirm)) {
                     Appuser appuser = new Appuser(username, passwordEncoder.encode(password));
                     appuserRepository.save(appuser);
+                    appuserProfileRepository.save(new AppuserProfile(appuser.getId()));
                     return "redirect:/login";
                 } else {
                     throw new PasswordMismatchException("password: " + password + "passwordConfirm: " + passwordConfirm);

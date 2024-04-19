@@ -17,7 +17,7 @@ public class AppuserProfile {
     public AppuserProfile() {};
     public AppuserProfile(Long appuserId) {
         this.appuserId = appuserId;
-        dailyGoal = 0;
+        dailyGoal = 3;
     }
     public long getId() {
         return id;

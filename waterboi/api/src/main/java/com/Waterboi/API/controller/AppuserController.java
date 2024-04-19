@@ -28,11 +28,24 @@ public class AppuserController {
             return appuserDetails.getUserId();
         } else {throw new AuthenticationCredentialsNotFoundException("User is not authenticated");}
     }
+    private record ProfileDto(double goal) {}
     @GetMapping("/profile")
-    public AppuserProfile getAppuserProfile(@AuthenticationPrincipal AppuserDetails appuserDetails) {
-        return appuserProfileRepository.findByAppuserId(appuserDetails.getUserId())
+    public ProfileDto getAppuserProfile(@AuthenticationPrincipal AppuserDetails appuserDetails) {
+        AppuserProfile appuserProfile = appuserProfileRepository.findByAppuserId(appuserDetails.getUserId())
                 .orElseThrow(() -> new NoSuchElementException("User not found"));
+
+        return new ProfileDto(appuserProfile.getDailyGoal());
     }
+
+    @PostMapping("/profile")
+    public ProfileDto setAppuserProfile(@AuthenticationPrincipal AppuserDetails appuserDetails, @RequestBody ProfileDto profileDto) {
+        AppuserProfile appuserProfile = appuserProfileRepository.findByAppuserId(appuserDetails.getUserId())
+                .orElseThrow(() -> new NoSuchElementException("User not found"));
+        appuserProfile.setDailyGoal(profileDto.goal());
+        appuserProfileRepository.save(appuserProfile);
+        return profileDto;
+    }
+
     @PostMapping("/profile/goal/day")
     public double setDailyGoal(@AuthenticationPrincipal AppuserDetails appuserDetails, @RequestBody GoalDto goalDto) {
         AppuserProfile appuserProfile = appuserProfileRepository.findByAppuserId(appuserDetails.getUserId())
