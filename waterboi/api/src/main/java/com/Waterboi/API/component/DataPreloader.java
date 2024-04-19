@@ -53,7 +53,9 @@ public class DataPreloader implements CommandLineRunner{
     private void loadDevData() {
         appuserRepository.save(new Appuser("user", passwordEncoder.encode("password")));
         Appuser appuser = appuserRepository.findByUsernameIgnoreCase("user").orElseThrow();
-        appuserProfileRepository.save(new AppuserProfile(appuser.getId()));
+        AppuserProfile appuserProfile = new AppuserProfile(appuser.getId());
+        appuserProfile.setDailyGoal(4);
+        appuserProfileRepository.save(appuserProfile);
         waterPostRepository.save(
                 new WaterPost(
                         appuserRepository.findByUsernameIgnoreCase(appuser.getUsername()).orElseThrow().getId(),
