@@ -6,7 +6,7 @@ import { Typography } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import SettingsIcon from '@mui/icons-material/Settings';
-import './app.css';
+//import './app.css';
 import Dashboard from './dashboard/dashboard.js';
 function App() {
     return (
@@ -32,7 +32,10 @@ function App() {
         //         </Grid>
         //     </Grid> 
         // </Container>
-        <Dashboard />
+  
+            <Dashboard />
+
+        
 
     );
 }

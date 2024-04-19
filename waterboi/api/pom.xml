@@ -99,7 +99,8 @@
 								@emotion/styled
 								@fontsource/roboto
 								@mui/icons-material
-								@mui/x-charts</arguments>
+								@mui/x-charts
+								</arguments>
 						</configuration>
 					</execution>
 					<execution>
