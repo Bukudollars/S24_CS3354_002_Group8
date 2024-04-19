@@ -17,6 +17,10 @@ function preventDefault(event) {
 export default function Orders() {
     const [posts, setPosts] = useState([]);
     const [units, setUnits] = useState({});
+    const [showSocialMedia, setShowSocialMedia] = useState(false);
+    const handleSocialMediaClick = () => {
+        setShowSocialMedia(!showSocialMedia);
+    };
 
     useEffect(() => {
         fetch('/api/post/all')
@@ -60,6 +64,24 @@ export default function Orders() {
               <TableCell>{new Date(post.postTime).toLocaleDateString()}</TableCell>
               <TableCell>{new Date(post.postTime).toLocaleTimeString()}</TableCell>
               <TableCell>{post.quantity}</TableCell>
+                <TableCell>
+                    <Link href="#" onClick={handleSocialMediaClick}>
+                        Social Media
+                    </Link>
+                    {showSocialMedia && (
+                        <div style={{ marginLeft: '10px' }}>
+                            <Link href="#" onClick={preventDefault} style={{ display: 'block' }}>
+                                Facebook
+                            </Link>
+                            <Link href="#" onClick={preventDefault} style={{ display: 'block' }}>
+                                Instagram
+                            </Link>
+                            <Link href="#" onClick={preventDefault} style={{ display: 'block' }}>
+                                X
+                            </Link>
+                        </div>
+                    )}
+                </TableCell>
               {/* <TableCell>{row.shipTo}</TableCell>
               <TableCell>{row.paymentMethod}</TableCell>
               <TableCell align="right">{`$${row.amount}`}</TableCell> */}
