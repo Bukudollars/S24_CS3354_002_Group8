@@ -17,7 +17,7 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { MainListItems, secondaryListItems } from './listItems';
+import { MainListItems, SecondaryListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
@@ -153,7 +153,7 @@ export default function Dashboard() {
           <List component="nav">
             <MainListItems />
             <Divider sx={{ my: 1 }} />
-            {secondaryListItems}
+            <SecondaryListItems />
           </List>
         </Drawer>
         <Box

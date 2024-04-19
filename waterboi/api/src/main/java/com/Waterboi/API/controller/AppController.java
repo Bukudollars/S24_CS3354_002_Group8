@@ -79,8 +79,8 @@ public class AppController {
 
     }
 
-//    @GetMapping("/login")
-//    public String showLoginForm() {
-//        return "login";
-//    }
+    @GetMapping("/login")
+    public String showLoginForm() {
+        return "login";
+    }
 }

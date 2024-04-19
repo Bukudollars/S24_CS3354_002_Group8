@@ -14,6 +14,7 @@ import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import PersonIcon from '@mui/icons-material/Person';
 import { DashboardContext } from './DashboardContext';
 import { useContext } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 
 export function MainListItems() {
     const { setCurrentView } = useContext(DashboardContext);
@@ -56,8 +57,10 @@ export function MainListItems() {
   
 }
 
-export const secondaryListItems = (
-  <React.Fragment>
+export function SecondaryListItems() {
+
+    return(
+        <React.Fragment>
     {/* <ListSubheader component="div" inset>
       Saved reports
     </ListSubheader>
@@ -73,11 +76,13 @@ export const secondaryListItems = (
       </ListItemIcon>
       <ListItemText primary="This Month" />
     </ListItemButton> */}
-    {/* <ListItemButton>
+    <ListItemButton component={Link} to="/logout">
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
-    </ListItemButton> */}
+      <ListItemText primary="Sign Out" />
+    </ListItemButton>
   </React.Fragment>
-);
+    )
+  
+}
