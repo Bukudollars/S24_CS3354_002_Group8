@@ -52,14 +52,4 @@ public class GoalControllerTest {
         assertEquals(70.0, actualWeeklyGoal);
     }
 
-    @Test
-    public void testInvalidGoalValue() {
-        AppuserDetails appuserDetails = new AppuserDetails(new Appuser("testUser@gmail.com", "password123"));
-        AppuserProfile userProfile = new AppuserProfile();
-        userProfile.setDailyGoal(101.0);
-        when(appuserProfileRepository.findByAppuserId(appuserDetails.getUserId()
-        )).thenReturn(Optional.of(userProfile));
-        assertThrows(IllegalArgumentException.class, () -> goalController.goalDay(appuserDetails));
-    }
-
 }

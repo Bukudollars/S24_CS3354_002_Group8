@@ -18,26 +18,13 @@ public class GoalController {
     public double goalDay(@AuthenticationPrincipal AppuserDetails appuserDetails) {
         AppuserProfile appuserProfile = appuserProfileRepository.findByAppuserId(appuserDetails.getUserId())
                 .orElseThrow();
-        double dailyGoal =  appuserProfile.getDailyGoal();
-        validateGoal(dailyGoal);
-        return dailyGoal;
-
+        return appuserProfile.getDailyGoal();
     }
-
     @GetMapping("/week")
     public double goalWeek(@AuthenticationPrincipal AppuserDetails appuserDetails) {
         AppuserProfile appuserProfile = appuserProfileRepository.findByAppuserId(appuserDetails.getUserId())
                 .orElseThrow();
-        double weeklyGoal = appuserProfile.getDailyGoal() * 7;
-        validateGoal(weeklyGoal);
-        return weeklyGoal;
-
-    }
-
-    private void validateGoal(double goal) {
-        if(goal <= 0 || goal >= 100) {
-            throw new IllegalArgumentException("Invalid Goal Value");
-        }
+        return appuserProfile.getDailyGoal() * 7;
     }
 
 }
