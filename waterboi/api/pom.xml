@@ -98,7 +98,8 @@
 								@emotion/react
 								@emotion/styled
 								@fontsource/roboto
-								@mui/icons-material</arguments>
+								@mui/icons-material
+								@mui/x-charts</arguments>
 						</configuration>
 					</execution>
 					<execution>
