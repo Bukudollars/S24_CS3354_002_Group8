@@ -1,37 +1,27 @@
-import React from 'react';
-import ViewPosts from './viewPosts.js';
-import { Container, Grid, Box } from '@mui/material';
-import { BottomNavigation, BottomNavigationAction } from '@mui/material';
-import { Typography } from '@mui/material';
-import HomeIcon from '@mui/icons-material/Home';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import SettingsIcon from '@mui/icons-material/Settings';
-import './app.css';
-function App() {
+import React, { useEffect } from 'react';
+import Dashboard from './dashboard/dashboard.js';
+import { BrowserRouter as Router, Route, useNavigate, Routes} from 'react-router-dom';
+
+function Logout() {
+    let navigate = useNavigate();
+    useEffect(() => {
+        fetch('/logout')
+        .then(response => {
+            if(response.ok) {
+                window.location.href = '/login';
+            }
+        });
+    });
+    return null;
+}
+export default function App() {
     return (
-        <Container>
-            <Grid container spacing={3}>
-                <Grid item xs={12}>
-                    <Box display="flex" justifyContent="center">
-                        <Typography variant="h1" component="h2" gutterBottom className="page-title">
-                            Water Tracker
-                        </Typography>
-                    </Box>
-                    
-                </Grid>
-                <Grid item xs={12}>
-                {ViewPosts()}
-                </Grid>
-                <Grid item xs={12}>
-                    <BottomNavigation className='bottom-nav'>
-                        <BottomNavigationAction label="Home" icon={<HomeIcon className='nav-icon' />} />
-                        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon className='nav-icon' />} />
-                        <BottomNavigationAction label="Settings" icon={<SettingsIcon className='nav-icon' />} />
-                    </BottomNavigation>
-                </Grid>
-            </Grid> 
-        </Container>
+        <Router>
+            <Routes>
+                <Route path="/logout" element={<Logout />} />
+                <Route path="/home" element={<Dashboard />} />
+            </Routes>
+            
+        </Router>
     );
 }
-
-export default App;
