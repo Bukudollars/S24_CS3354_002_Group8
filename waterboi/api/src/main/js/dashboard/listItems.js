@@ -11,6 +11,7 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
+import PersonIcon from '@mui/icons-material/Person';
 import { DashboardContext } from './DashboardContext';
 import { useContext } from 'react';
 
@@ -34,7 +35,7 @@ export function MainListItems() {
         setCurrentView('profile');
     }}>
       <ListItemIcon>
-        <PeopleIcon />
+        <PersonIcon />
       </ListItemIcon>
       <ListItemText primary="Profile" />
     </ListItemButton>
@@ -57,7 +58,7 @@ export function MainListItems() {
 
 export const secondaryListItems = (
   <React.Fragment>
-    <ListSubheader component="div" inset>
+    {/* <ListSubheader component="div" inset>
       Saved reports
     </ListSubheader>
     <ListItemButton>
@@ -71,7 +72,7 @@ export const secondaryListItems = (
         <AssignmentIcon />
       </ListItemIcon>
       <ListItemText primary="This Month" />
-    </ListItemButton>
+    </ListItemButton> */}
     {/* <ListItemButton>
       <ListItemIcon>
         <AssignmentIcon />

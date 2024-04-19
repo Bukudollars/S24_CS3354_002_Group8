@@ -89,7 +89,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const defaultTheme = createTheme();
 
 export default function Dashboard() {
-    const [currentView, setCurrentView] = useState('profile');
+    const [currentView, setCurrentView] = useState('progress');
     const [open, setOpen] = React.useState(true);
     const toggleDrawer = () => {
     setOpen(!open);

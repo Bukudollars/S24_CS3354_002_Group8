@@ -57,8 +57,8 @@ export default function Orders() {
         <TableBody>
           {posts.map((post) => (
             <TableRow key={post.id}>
-              <TableCell>{post.postTime}</TableCell>
-              <TableCell>{post.postTime}</TableCell>
+              <TableCell>{new Date(post.postTime).toLocaleDateString()}</TableCell>
+              <TableCell>{new Date(post.postTime).toLocaleTimeString()}</TableCell>
               <TableCell>{post.quantity}</TableCell>
               {/* <TableCell>{row.shipTo}</TableCell>
               <TableCell>{row.paymentMethod}</TableCell>

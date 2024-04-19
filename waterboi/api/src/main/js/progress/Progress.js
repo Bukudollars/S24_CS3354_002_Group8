@@ -1,16 +1,7 @@
 import * as React from 'react';
 import { PieChart } from '@mui/x-charts/PieChart';
 import { Box } from '@mui/material';
-
-
-
-
-
-const data2 = [
-  { label: 'Drank This Week', value: 100 },
-  { label: 'To Weekly Goal', value: 300 },
-  
-];
+import Typography from '@mui/material/Typography';
 
 export default function TwoLevelPieChart() {
     const [drankToday, setDrankToday] = React.useState([]);
@@ -44,31 +35,34 @@ export default function TwoLevelPieChart() {
         .then(response => response.json())
         .then(data => setWeeklyGoal([
             { label: 'Drank This Week', value: drankWeek },
-            { label: 'To Daily Goal', value: data - drankWeek},
+            { label: 'To Weekly Goal', value: data - drankWeek},
         ]));
     },[drankWeek]);
 
   return (
-    <Box display={'flex'} justifyContent={'center'}>
-        <PieChart
-            series={[
-                {
-                innerRadius: 60,
-                outerRadius: 80,
-                data: dailyGoal,
-                },
-                {
-                innerRadius: 100,
-                outerRadius: 120,
-                data: weeklyGoal,
-                },
-            ]}
-        width={400}
-        height={300}
-        slotProps={{
-            legend: { hidden: true },
-        }}
-        />
+    <Box display={'flex'} flexDirection={'column'} alignItems={'center'}>
+        <Typography variant="h4" align="center">Progress</Typography>
+        <Box display={'flex'} justifyContent={'center'}>
+            <PieChart
+                series={[
+                    {
+                    innerRadius: 60,
+                    outerRadius: 80,
+                    data: dailyGoal,
+                    },
+                    {
+                    innerRadius: 100,
+                    outerRadius: 120,
+                    data: weeklyGoal,
+                    },
+                ]}
+            width={400}
+            height={300}
+            slotProps={{
+                legend: { hidden: true },
+            }}
+            />
+        </Box>
     </Box>
   );
 }
