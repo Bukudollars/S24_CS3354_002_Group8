@@ -22,6 +22,7 @@ import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
 import Profile from '../profile/Profile';
+import Progress from '../progress/Progress';
 import { DashboardContext } from './DashboardContext';
 
 
@@ -199,7 +200,7 @@ export default function Dashboard() {
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  {currentView === 'profile' ? <Profile /> : <Orders />}
+                  {currentView === 'profile' ? <Profile /> : currentView === 'drinks' ? <Orders />: <Progress />}
                 </Paper>
               </Grid>
 

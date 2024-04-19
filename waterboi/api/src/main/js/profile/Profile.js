@@ -7,7 +7,6 @@ export default function Profile() {
     fetch('/api/user/profile')
       .then(response => response.json())
       .then(data => setUser(data));
-      console.log(user);
   }, []);
 
   const handleChange = (event) => {

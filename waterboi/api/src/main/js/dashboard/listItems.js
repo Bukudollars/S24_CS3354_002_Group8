@@ -10,6 +10,7 @@ import LocalDrinkIcon from '@mui/icons-material/LocalDrink';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import { DashboardContext } from './DashboardContext';
 import { useContext } from 'react';
 
@@ -17,11 +18,11 @@ export function MainListItems() {
     const { setCurrentView } = useContext(DashboardContext);
     return(
         <React.Fragment>
-    <ListItemButton>
+    <ListItemButton onClick={() => setCurrentView('progress')}>
       <ListItemIcon>
-        <DashboardIcon />
+        <DonutLargeIcon />
       </ListItemIcon>
-      <ListItemText primary="Dashboard" />
+      <ListItemText primary="Progress" />
     </ListItemButton>
     <ListItemButton onClick={() => setCurrentView('drinks')}>
       <ListItemIcon>
@@ -30,7 +31,6 @@ export function MainListItems() {
       <ListItemText primary="Drinks" />
     </ListItemButton>
     <ListItemButton onClick={() => {
-        console.log('Profile clicked');
         setCurrentView('profile');
     }}>
       <ListItemIcon>
