@@ -53,7 +53,7 @@ export default function Orders() {
           <TableRow>
             <TableCell>Date</TableCell>
             <TableCell>Time</TableCell>
-            <TableCell>Amount</TableCell>
+            <TableCell>Liters</TableCell>
             {/* <TableCell>Payment Method</TableCell>
             <TableCell align="right">Sale Amount</TableCell> */}
           </TableRow>
@@ -89,9 +89,9 @@ export default function Orders() {
           ))}
         </TableBody>
       </Table>
-      <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
+      {/* <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
         See more drinks
-      </Link>
+      </Link> */}
     </React.Fragment>
   );
 }

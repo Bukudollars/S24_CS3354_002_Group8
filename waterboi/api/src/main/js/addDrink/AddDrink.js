@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { DashboardContext } from '../dashboard/DashboardContext';
 import { useContext } from 'react';
+import { Typography } from '@mui/material';
 
 
 
@@ -67,6 +68,7 @@ const AddDrink = () => {
         value={value}
         onChange={handleInputChange}
       />
+      <Typography variant="h6" align="center">Liters</Typography>
       <Question>Sure about that?</Question>
       <ButtonTwo onClick={handleSubmit} >I am Sure!</ButtonTwo>
     </Holder>

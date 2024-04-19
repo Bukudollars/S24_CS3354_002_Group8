@@ -5,6 +5,8 @@ import ListItemText from '@mui/material/ListItemText';
 // import ListSubheader from '@mui/material/ListSubheader';
 
 import LocalDrinkIcon from '@mui/icons-material/LocalDrink';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
@@ -31,7 +33,7 @@ export function MainListItems() {
     </ListItemButton>
     <ListItemButton onClick={() => setCurrentView('add-drink')}>
       <ListItemIcon>
-        <LocalDrinkIcon />
+        <AddBoxIcon />
       </ListItemIcon>
       <ListItemText primary="Add Drink" />
     </ListItemButton>
@@ -81,7 +83,7 @@ export function SecondaryListItems() {
     </ListItemButton> */}
     <ListItemButton component={Link} to="/logout">
       <ListItemIcon>
-        <AssignmentIcon />
+        <ExitToAppIcon />
       </ListItemIcon>
       <ListItemText primary="Sign Out" />
     </ListItemButton>
