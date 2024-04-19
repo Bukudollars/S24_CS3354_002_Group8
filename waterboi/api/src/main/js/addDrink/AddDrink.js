@@ -83,26 +83,6 @@ const AddDrink = () => {
         value={value}
         onChange={handleInputChange}
       />
-      <TabList>
-        <Tab
-          active={activeTab === 'Cups'}
-          onClick={() => handleTabClick('Cups')}
-        >
-          Cups
-        </Tab>
-        <Tab
-          active={activeTab === 'Liters'}
-          onClick={() => handleTabClick('Liters')}
-        >
-          Liters
-        </Tab>
-        <Tab
-          active={activeTab === 'Gallons'}
-          onClick={() => handleTabClick('Gallons')}
-        >
-          Gallons
-        </Tab>
-      </TabList>
       <Question>Sure about that?</Question>
       <ButtonTwo onClick={handleSubmit} >I am Sure!</ButtonTwo>
     </Holder>
