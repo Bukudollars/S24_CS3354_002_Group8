@@ -1,4 +1,4 @@
-// import * as React from 'react';
+
 import Link from '@mui/material/Link';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -27,7 +27,7 @@ export default function Orders() {
         .then(response => response.json())
         .then(data => setPosts(data))
         .catch(error => console.error('Error fetching data:', error));
-        // console.log(posts);
+
 
         fetch('/api/post/units')
         .then(response => response.json())
@@ -40,7 +40,6 @@ export default function Orders() {
                 return acc;
             }, {});
             setUnits(unitsMap);
-            // console.log(unitsMap);
         })
         .catch(error => console.error('Error fetching units:', error));
     }, []);
@@ -54,8 +53,7 @@ export default function Orders() {
             <TableCell>Date</TableCell>
             <TableCell>Time</TableCell>
             <TableCell>Liters</TableCell>
-            {/* <TableCell>Payment Method</TableCell>
-            <TableCell align="right">Sale Amount</TableCell> */}
+
           </TableRow>
         </TableHead>
         <TableBody>
@@ -82,16 +80,12 @@ export default function Orders() {
                         </div>
                     )}
                 </TableCell>
-              {/* <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell align="right">{`$${row.amount}`}</TableCell> */}
+
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      {/* <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
-        See more drinks
-      </Link> */}
+
     </React.Fragment>
   );
 }

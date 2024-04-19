@@ -2,10 +2,6 @@ package com.Waterboi.API.entity;
 
 import jakarta.persistence.*;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 @Entity
 public class Appuser {
     @Id

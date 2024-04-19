@@ -33,7 +33,7 @@ public class AppControllerRegisterTest {
     public void whenRegisterAppuser_theAppuserIsRegistered() throws Exception {
 
         mockMvc.perform(post("/register")
-                        .param("username", "newUser@gmail.com")
+                        .param("username", "newUser2@gmail.com")
                         .param("password", "password123")
                         .param("passwordConfirm", "password123")
                         .with(csrf()))

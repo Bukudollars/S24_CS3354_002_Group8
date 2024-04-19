@@ -37,24 +37,6 @@ export default function Profile() {
           fullWidth
           margin="normal"
         />
-        {/* <TextField
-          name="email"
-          label="Email"
-          value={user.email}
-          onChange={handleChange}
-          fullWidth
-          margin="normal"
-        /> */}
-        {/* <TextField
-          name="bio"
-          label="Bio"
-          value={user.bio}
-          onChange={handleChange}
-          fullWidth
-          multiline
-          rows={4}
-          margin="normal"
-        /> */}
         <Button variant="contained" color="primary" fullWidth type="submit">
           Save
         </Button>
